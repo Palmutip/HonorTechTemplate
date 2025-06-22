@@ -11,7 +11,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
           {/* About Us */}
           <div>
-            <h4 className="text-yellow-400 font-bold mb-4">About Us</h4>
+            <h3 className="text-yellow-400 font-bold mb-4">About Us</h3>
             <ul className="space-y-2">
             {footerNavItems.map((item) => (
               <li key={item.path}>
@@ -26,7 +26,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-yellow-400 font-bold mb-4">Services</h4>
+            <h3 className="text-yellow-400 font-bold mb-4">Services</h3>
             <ul className="space-y-2">
               <li><Link to="/services" className="flex items-center gap-2 text-white hover:text-yellow-300"><Briefcase size={18} />Consulting</Link></li>
               <li><Link to="/contact" className="flex items-center gap-2 text-white hover:text-yellow-300"><FileSignature size={18} />Get a Quote</Link></li>
@@ -35,28 +35,28 @@ export function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="text-yellow-400 font-bold mb-4">Connect</h4>
+            <h3 className="text-yellow-400 font-bold mb-4">Connect</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="https://www.alignable.com/pueblo-co/honor-tech-llc-2" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-yellow-300">
-                  <img src="https://www.alignable.com/assets/badge/alignable-c2.png" alt="Alignable" className="h-6" />
+                  <img src="https://www.alignable.com/assets/badge/alignable-c2.png" alt="Follow us on Alignable" className="h-6"  aria-label="Follow us on Alignable"/>
                   Alignable
                 </Link>
               </li>
               <li>
-                <Link to="https://www.linkedin.com/company/honor-tech-llc" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-white hover:text-yellow-300">
+                <Link to="https://www.linkedin.com/company/honor-tech-llc" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-white hover:text-yellow-300" aria-label="Follow us on Linkedin">
                   <FaLinkedin className="text-[#0077b5] h-6 w-6" />
                   LinkedIn
                 </Link>
               </li>
               <li>
-                <Link to="https://www.facebook.com/profile.php?id=61571952063852" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-white hover:text-yellow-300">
+                <Link to="https://www.facebook.com/profile.php?id=61571952063852" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-white hover:text-yellow-300" aria-label="Follow us on Facebook">
                   <FaFacebook className="text-[#4267B2] h-6 w-6" />
                   Facebook
                 </Link>
               </li>
               <li>
-                <Link to="https://x.com/HonortechLLC" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-white hover:text-yellow-300">
+                <Link to="https://x.com/HonortechLLC" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-white hover:text-yellow-300" aria-label="Follow us on social network X, formerly Twitter">
                   <FaXTwitter className="h-6 w-6" />
                 </Link>
               </li>

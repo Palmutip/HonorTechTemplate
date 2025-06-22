@@ -15,7 +15,7 @@ export function Header() {
     <div className="w-full flex justify-between standard-header ">
       <div className="logo">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="Honor Tech LLC - Custom Software Development Company"  />
+          <img src={logo} alt="Honor Tech LLC - Custom Software Development Company" width="230" height="60" />
         </Link>
       </div>
 
@@ -36,7 +36,7 @@ export function Header() {
       <div className="md:hidden">
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
-            <Button variant="ghost" className="h-[42px] w-auto size-auto" onClick={() => setOpen(!open)}>
+            <Button variant="ghost" className="h-[42px] w-auto size-auto" onClick={() => setOpen(!open)} aria-label="Open navigation menu">
               <Menu className="h-[42px] w-auto size-auto" />
             </Button>
           </PopoverTrigger>
