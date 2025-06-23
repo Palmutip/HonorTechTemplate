@@ -12,7 +12,7 @@ export function Header() {
   const [open, setOpen] = useState(false)
   
   return (
-    <div className="w-full flex justify-between standard-header ">
+    <header className="w-full flex justify-between standard-header ">
       <div className="logo">
         <Link to="/" className="flex items-center">
           <img src={logo} alt="Honor Tech LLC - Custom Software Development Company" width="230" height="60" />
@@ -67,6 +67,6 @@ export function Header() {
           </AnimatePresence>
         </Popover>
       </div>
-    </div>
+    </header>
   )
 }
