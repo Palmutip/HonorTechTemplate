@@ -1,83 +1,62 @@
-import { motion } from 'framer-motion'
+import { motion, useAnimation, useInView } from 'framer-motion'
 import { Image, ExternalLink, Heart } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { setPageMeta } from '@/utils'
+import { imageCredits } from '../../constants/data'
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6
+    }
+  }
+}
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8
+    }
+  }
+}
 
 export function ImageCredits() {
   useEffect(() => {
     setPageMeta(
       'Image Credits - Honor Tech LLC',
-      'Attribution and credits for images, icons, and visual assets used on the Honor Tech LLC website. We respect and acknowledge the work of talented creators.'
+      'View the image credits and attributions for the images used on the Honor Tech LLC website.'
     )
   }, [])
 
-  const imageCredits = [
-    {
-      category: "Icons and UI Elements",
-      items: [
-        {
-          name: "Lucide React Icons",
-          description: "Beautiful & consistent icon toolkit made by the community",
-          license: "MIT License",
-          author: "Lucide Community",
-          url: "https://lucide.dev/",
-          usage: "Navigation icons, feature icons, and UI elements throughout the website"
-        },
-        {
-          name: "Heroicons",
-          description: "A set of beautiful hand-crafted SVG icons",
-          license: "MIT License",
-          author: "Tailwind CSS Team",
-          url: "https://heroicons.com/",
-          usage: "Additional UI icons and decorative elements"
-        }
-      ]
-    },
-    {
-      category: "Stock Photography",
-      items: [
-        {
-          name: "Unsplash",
-          description: "Beautiful free images and photos",
-          license: "Unsplash License",
-          author: "Various photographers",
-          url: "https://unsplash.com/",
-          usage: "Background images and hero section visuals"
-        },
-        {
-          name: "Pexels",
-          description: "Free stock photos and videos",
-          license: "Pexels License",
-          author: "Various photographers",
-          url: "https://www.pexels.com/",
-          usage: "Additional background and decorative images"
-        }
-      ]
-    },
-    {
-      category: "Graphics and Illustrations",
-      items: [
-        {
-          name: "Custom Graphics",
-          description: "Original graphics and illustrations created for Honor Tech LLC",
-          license: "Proprietary",
-          author: "Honor Tech LLC Design Team",
-          url: "",
-          usage: "Company logos, custom illustrations, and branded graphics"
-        },
-        {
-          name: "SVG Patterns",
-          description: "Subtle background patterns and textures",
-          license: "MIT License",
-          author: "Various contributors",
-          url: "https://www.svgbackgrounds.com/",
-          usage: "Background patterns and decorative elements"
-        }
-      ]
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
     }
-  ]
+  }, [controls, isInView]);
+
+  const animation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: i * 0.1
+      }
+    }),
+  }
 
   const photographers = [
     {
@@ -105,73 +84,72 @@ export function ImageCredits() {
           className="text-center mb-16"
         >
           <div className="flex justify-center mb-6">
-            <div className="bg-blue-100 p-4 rounded-full">
-              <Image className="h-12 w-12 text-blue-600" />
+            <div className="bg-[#e0a802] p-4 rounded-full">
+              <Image className="h-12 w-12 text-black-600" />
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Image Credits</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We believe in giving proper credit to the talented creators whose work 
-            helps make our website beautiful and engaging.
+            We are grateful to the talented photographers and artists who have made their 
+            work available for use.
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-12">
-          {/* Image Credits by Category */}
-          {imageCredits.map((category) => (
-            <motion.div 
-              key={category.category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <Card>
+        <motion.div 
+          ref={ref}
+          animate={controls}
+          initial="hidden"
+          variants={animation}
+          className="max-w-4xl mx-auto space-y-12"
+        >
+          {imageCredits.map((creditType) => (
+            <motion.div key={creditType.type} variants={animation}>
+              <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{category.category}</CardTitle>
+                  <CardTitle>{creditType.type}</CardTitle>
+                  <CardDescription>
+                    Source:{" "}
+                    <a 
+                      href={creditType.sourceUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-blue-600 hover:underline"
+                    >
+                      {creditType.source}
+                    </a>{" "}
+                    ({creditType.license})
+                  </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                  {category.items.map((item) => (
-                    <div key={item.name} className="border-b border-gray-100 pb-6 last:border-b-0">
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <h3 className="text-lg font-semibold mb-1">{item.name}</h3>
-                          <p className="text-gray-600 mb-2">{item.description}</p>
-                        </div>
-                        <Badge variant="secondary" className="ml-4">
-                          {item.license}
-                        </Badge>
-                      </div>
-                      <div className="grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                          <p><strong>Author:</strong> {item.author}</p>
-                          <p><strong>Usage:</strong> {item.usage}</p>
-                        </div>
-                        <div className="text-right">
-                          {item.url && (
-                            <a 
-                              href={item.url} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center text-blue-600 hover:underline"
-                            >
-                              Visit Source <ExternalLink className="h-4 w-4 ml-1" />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                <CardContent>
+                  {creditType.items.length > 0 ? (
+                    <ul className="space-y-2">
+                      {creditType.items.map((item) => (
+                        <li key={item.creator} className="flex items-center">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          <a 
+                            href={item.creatorUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="text-gray-700 hover:text-blue-600"
+                          >
+                            {item.creator}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-gray-600">
+                      The icons used throughout the site are from the Lucide icon library, which is 
+                      an open-source project. We appreciate the community for their contributions.
+                    </p>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
           ))}
 
           {/* Photographers Section */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl">Special Thanks to Photographers</CardTitle>
@@ -202,7 +180,7 @@ export function ImageCredits() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center text-blue-600 hover:underline text-sm"
                       >
-                        View Portfolio <ExternalLink className="h-3 w-3 ml-1" />
+                        Visit Gallery <ExternalLink className="h-4 w-4 ml-1" />
                       </a>
                     </div>
                   ))}
@@ -211,71 +189,22 @@ export function ImageCredits() {
             </Card>
           </motion.div>
 
-          {/* License Information */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <Card className="bg-blue-50 border-blue-200">
-              <CardHeader>
-                <CardTitle>License Information</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="font-semibold mb-2">MIT License</h3>
-                    <p className="text-gray-600 text-sm">
-                      Permits commercial use, modification, distribution, and private use. 
-                      Requires license and copyright notice to be included in all copies.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">Unsplash License</h3>
-                    <p className="text-gray-600 text-sm">
-                      Allows free use for commercial and noncommercial purposes. 
-                      No permission needed, though attribution is appreciated.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">Pexels License</h3>
-                    <p className="text-gray-600 text-sm">
-                      Free to use for commercial and noncommercial purposes. 
-                      Attribution is not required but appreciated.
-                    </p>
-                  </div>
+          {/* Appreciation Section */}
+          <motion.div variants={sectionVariants}>
+            <Card className="bg-[#f1d9b5]">
+              <CardContent className="p-8 text-center">
+                <div className="flex justify-center mb-4">
+                  <Heart className="h-8 w-8 text-red-500" />
                 </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Contact Section */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-center"
-          >
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center justify-center mb-4">
-                  <Heart className="h-6 w-6 text-red-500 mr-2" />
-                  <p className="text-lg font-semibold">Thank You to All Contributors!</p>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  If you're a creator whose work appears on our site and you'd like 
-                  to be credited differently or have any questions, please contact us.
+                <h3 className="text-xl font-semibold mb-2">Thank You!</h3>
+                <p className="text-gray-600">
+                  We deeply appreciate all the creators who make their work available to the community. 
+                  Your contributions help us create beautiful, engaging experiences for our users.
                 </p>
-                <a 
-                  href="mailto:credits@honortechllc.com" 
-                  className="inline-flex items-center text-blue-600 hover:underline"
-                >
-                  Contact Us About Credits
-                </a>
               </CardContent>
             </Card>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )

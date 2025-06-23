@@ -1,16 +1,49 @@
-import { motion } from 'framer-motion'
-import { Shield, Eye, Lock, FileText } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { useEffect } from 'react'
+import { motion, useAnimation, useInView } from 'framer-motion'
+import { Shield, Eye, Lock, FileText, Phone, Scale } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useEffect, useRef } from 'react'
 import { setPageMeta } from '@/utils'
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6
+    }
+  }
+}
 
 export function Privacy() {
   useEffect(() => {
     setPageMeta(
       'Privacy Policy - Honor Tech LLC',
-      'Learn how Honor Tech LLC protects your privacy and handles your personal information. Read our comprehensive privacy policy and data protection practices.'
+      'Read the Privacy Policy for Honor Tech LLC. Understand how we collect, use, and protect your personal and business data.'
     )
   }, [])
+
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [controls, isInView]);
+
+  const animation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: i * 0.1
+      }
+    }),
+  }
 
   const lastUpdated = "January 1, 2025"
 
@@ -25,8 +58,8 @@ export function Privacy() {
           className="text-center mb-16"
         >
           <div className="flex justify-center mb-6">
-            <div className="bg-blue-100 p-4 rounded-full">
-              <Shield className="h-12 w-12 text-blue-600" />
+            <div className="bg-[#e0a802] p-4 rounded-full">
+              <Shield className="h-12 w-12 text-black-600" />
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Privacy Policy</h1>
@@ -39,17 +72,19 @@ export function Privacy() {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-8">
+        <motion.div 
+          ref={ref}
+          animate={controls}
+          initial="hidden"
+          variants={animation}
+          className="max-w-4xl mx-auto space-y-8"
+        >
           {/* Information We Collect */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <div className="flex items-center">
-                  <Eye className="h-6 w-6 text-blue-600 mr-3" />
+                  <Eye className="h-6 w-6 text-[#e0a802] mr-3" />
                   <CardTitle>Information We Collect</CardTitle>
                 </div>
               </CardHeader>
@@ -80,15 +115,11 @@ export function Privacy() {
           </motion.div>
 
           {/* How We Use Information */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <div className="flex items-center">
-                  <FileText className="h-6 w-6 text-blue-600 mr-3" />
+                  <FileText className="h-6 w-6 text-[#e0a802] mr-3" />
                   <CardTitle>How We Use Your Information</CardTitle>
                 </div>
               </CardHeader>
@@ -109,15 +140,11 @@ export function Privacy() {
           </motion.div>
 
           {/* Information Sharing */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <div className="flex items-center">
-                  <Lock className="h-6 w-6 text-blue-600 mr-3" />
+                  <Lock className="h-6 w-6 text-[#e0a802] mr-3" />
                   <CardTitle>Information Sharing and Disclosure</CardTitle>
                 </div>
               </CardHeader>
@@ -137,15 +164,11 @@ export function Privacy() {
           </motion.div>
 
           {/* Data Security */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <div className="flex items-center">
-                  <Shield className="h-6 w-6 text-blue-600 mr-3" />
+                  <Shield className="h-6 w-6 text-[#e0a802] mr-3" />
                   <CardTitle>Data Security</CardTitle>
                 </div>
               </CardHeader>
@@ -180,14 +203,13 @@ export function Privacy() {
           </motion.div>
 
           {/* Your Rights */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
-                <CardTitle>Your Rights and Choices</CardTitle>
+                <div className="flex items-center">
+                  <Scale className="h-6 w-6 text-[#e0a802] mr-3" />
+                  <CardTitle>Your Rights and Choices</CardTitle>
+                </div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">
@@ -201,31 +223,25 @@ export function Privacy() {
                   <li>Withdraw consent for data processing</li>
                   <li>Request data portability</li>
                 </ul>
-                <p className="text-gray-600 mt-4">
-                  To exercise these rights, please contact us at{' '}
-                  <a href="mailto:privacy@honortechllc.com" className="text-blue-600 hover:underline">
-                    privacy@honortechllc.com
-                  </a>
-                </p>
               </CardContent>
             </Card>
           </motion.div>
 
           {/* Contact Information */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <Card className="bg-blue-50 border-blue-200">
+          <motion.div variants={itemVariants}>
+            <Card className="bg-[#f1d9b5]">
               <CardHeader>
-                <CardTitle>Contact Us</CardTitle>
-                <CardDescription>
-                  If you have any questions about this Privacy Policy, please contact us:
-                </CardDescription>
+                <div className="flex items-center">
+                  <Phone className="h-6 w-6 text-black mr-3" />
+                  <CardTitle>Contact Us</CardTitle>
+                </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 text-gray-700">
+                <p className="text-black-600 mb-4">
+                  If you have any questions about this Privacy Policy or our data practices, 
+                  please contact us:
+                </p>
+                <div className="space-y-2">
                   <p><strong>Email:</strong> privacy@honortechllc.com</p>
                   <p><strong>Phone:</strong> +1 (555) 123-4567</p>
                   <p><strong>Address:</strong> Honor Tech LLC, United States</p>
@@ -233,7 +249,7 @@ export function Privacy() {
               </CardContent>
             </Card>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )

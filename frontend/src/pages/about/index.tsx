@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
+import { motion, useAnimation, useInView } from 'framer-motion'
 import { Users, Target, Award, Globe } from 'lucide-react'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { setPageMeta } from '../../utils'
 
 export function About() {
@@ -10,6 +10,28 @@ export function About() {
       'Learn about Honor Tech LLC, our mission, values, and commitment to delivering custom software solutions that help businesses grow and succeed.'
     )
   }, [])
+
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [controls, isInView]);
+
+  const animation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: i * 0.1
+      }
+    }),
+  }
 
   return (
     <div className="min-h-screen py-20">
@@ -29,12 +51,14 @@ export function About() {
         </motion.div>
 
         {/* Mission & Vision */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+        <motion.div 
+          ref={ref}
+          animate={controls}
+          initial="hidden"
+          variants={animation}
+          className="grid lg:grid-cols-2 gap-12 mb-20"
+        >
+          <motion.div variants={animation}>
             <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
             <p className="text-lg text-gray-600 mb-6">
               Our team of experts tailors solutions to match the unique demands of your industry, 
@@ -46,11 +70,7 @@ export function About() {
             </p>
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <motion.div variants={animation}>
             <h2 className="text-3xl font-bold mb-6">What We Do</h2>
             <p className="text-lg text-gray-600 mb-6">
               Our specialties range from designing scalable cloud environments to implementing 
@@ -62,57 +82,61 @@ export function About() {
               solutions that empower your business to reach new heights.
             </p>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Values */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={animation}
           className="mb-20"
         >
-          <h2 className="text-3xl font-bold text-center mb-12">Our Values</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-blue-600" />
+          <motion.h2 
+            variants={animation}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            Our Values
+          </motion.h2>
+          <motion.div 
+            variants={animation}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            <motion.div variants={animation} className="text-center">
+              <div className="bg-[#e0a802] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="h-8 w-8 text-black-600" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Team Collaboration</h3>
               <p className="text-gray-600">Working together to deliver exceptional results</p>
-            </div>
+            </motion.div>
 
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Target className="h-8 w-8 text-blue-600" />
+            <motion.div variants={animation} className="text-center">
+              <div className="bg-[#e0a802] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Target className="h-8 w-8 text-black-600" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Innovation</h3>
               <p className="text-gray-600">Pushing boundaries with cutting-edge technology</p>
-            </div>
+            </motion.div>
 
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="h-8 w-8 text-blue-600" />
+            <motion.div variants={animation} className="text-center">
+              <div className="bg-[#e0a802] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Award className="h-8 w-8 text-black-600" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Quality</h3>
               <p className="text-gray-600">Delivering excellence in every project</p>
-            </div>
+            </motion.div>
 
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Globe className="h-8 w-8 text-blue-600" />
+            <motion.div variants={animation} className="text-center">
+              <div className="bg-[#e0a802] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Globe className="h-8 w-8 text-black-600" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Global Reach</h3>
               <p className="text-gray-600">Serving clients worldwide with local expertise</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
 
         {/* Value Proposition */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-blue-50 rounded-lg p-8 md:p-12"
+          variants={animation}
+          className="bg-[#f1d9b5] rounded-lg p-8 md:p-12"
         >
           <h2 className="text-3xl font-bold text-center mb-8">Our Value Proposition</h2>
           <p className="text-lg text-gray-700 text-center max-w-4xl mx-auto">

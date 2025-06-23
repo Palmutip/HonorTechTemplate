@@ -1,13 +1,14 @@
-import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import { motion, useAnimation, useInView } from 'framer-motion'
+import { Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { setPageMeta } from '@/utils'
+import { projectTypes, contactInfo, whyChooseUsContact } from '../../constants/data'
 
 export function Contact() {
   useEffect(() => {
@@ -16,6 +17,28 @@ export function Contact() {
       'Ready to transform your business with custom software solutions? Contact Honor Tech LLC today for a free consultation and quote.'
     )
   }, [])
+
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [controls, isInView]);
+
+  const animation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: i * 0.1
+      }
+    }),
+  }
 
   return (
     <div className="min-h-screen py-20">
@@ -34,13 +57,15 @@ export function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <motion.div 
+          ref={ref}
+          animate={controls}
+          initial="hidden"
+          variants={animation}
+          className="grid lg:grid-cols-2 gap-12"
+        >
           {/* Contact Form */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <motion.div variants={animation}>
             <Card>
               <CardHeader>
                 <CardTitle>Send us a message</CardTitle>
@@ -91,11 +116,9 @@ export function Contact() {
                         <SelectValue placeholder="Select a project type" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="web-app">Web Application</SelectItem>
-                        <SelectItem value="pos">Point of Sale System</SelectItem>
-                        <SelectItem value="enterprise">Enterprise Solution</SelectItem>
-                        <SelectItem value="ai-ml">AI/ML Integration</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        {projectTypes.map((type) => (
+                          <SelectItem key={type.value} value={type.value}>{type.label}</SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
@@ -109,7 +132,7 @@ export function Contact() {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+                  <Button type="submit" className="w-full text-black bg-[#e0a802] hover:bg-[#e0a802]/75">
                     <Send className="h-5 w-5 mr-2" />
                     Send Message
                   </Button>
@@ -120,9 +143,7 @@ export function Contact() {
 
           {/* Contact Information */}
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={animation}
             className="space-y-8"
           >
             <div>
@@ -134,38 +155,18 @@ export function Contact() {
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-start">
-                <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                  <Mail className="h-6 w-6 text-blue-600" />
+              {contactInfo.map((info) => (
+                <div key={info.title} className="flex items-start">
+                  <div className="bg-[#e0a802] p-3 rounded-lg mr-4">
+                    <info.icon className="h-6 w-6 text-black-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">{info.title}</h3>
+                    <p className="text-gray-600">{info.details}</p>
+                    <p className="text-sm text-gray-500">{info.note}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Email</h3>
-                  <p className="text-gray-600">info@honortechllc.com</p>
-                  <p className="text-sm text-gray-500">We typically respond within 24 hours</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                  <Phone className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
-                  <p className="text-sm text-gray-500">Monday - Friday, 9 AM - 6 PM EST</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                  <MapPin className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Location</h3>
-                  <p className="text-gray-600">United States</p>
-                  <p className="text-sm text-gray-500">Serving clients nationwide</p>
-                </div>
-              </div>
+              ))}
             </div>
 
             {/* Why Choose Us */}
@@ -175,27 +176,17 @@ export function Contact() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                    U.S.-based development team
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                    Transparent pricing and communication
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                    Ongoing support and maintenance
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                    Quality guaranteed results
-                  </li>
+                  {whyChooseUsContact.map((reason) => (
+                    <li key={reason} className="flex items-center">
+                      <div className="w-2 h-2 bg-[#e0a802] rounded-full mr-3"></div>
+                      {reason}
+                    </li>
+                  ))}
                 </ul>
               </CardContent>
             </Card>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )

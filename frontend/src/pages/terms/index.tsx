@@ -1,16 +1,49 @@
-import { motion } from 'framer-motion'
-import { FileText, Scale, AlertTriangle, CheckCircle } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { useEffect } from 'react'
+import { motion, useAnimation, useInView } from 'framer-motion'
+import { FileText, Scale, AlertTriangle, CheckCircle, Phone } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useEffect, useRef } from 'react'
 import { setPageMeta } from '@/utils'
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6
+    }
+  }
+}
 
 export function Terms() {
   useEffect(() => {
     setPageMeta(
       'Terms of Service - Honor Tech LLC',
-      'Read our terms of service and conditions for using Honor Tech LLC software development services. Understand our policies, rights, and obligations.'
+      'Read the Terms of Service for using the Honor Tech LLC website and services. Understand your rights and responsibilities.'
     )
   }, [])
+
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [controls, isInView]);
+
+  const animation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: i * 0.1
+      }
+    }),
+  }
 
   const lastUpdated = "January 1, 2025"
 
@@ -25,8 +58,8 @@ export function Terms() {
           className="text-center mb-16"
         >
           <div className="flex justify-center mb-6">
-            <div className="bg-blue-100 p-4 rounded-full">
-              <FileText className="h-12 w-12 text-blue-600" />
+            <div className="bg-[#e0a802] p-4 rounded-full">
+              <FileText className="h-12 w-12 text-black-600" />
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Terms of Service</h1>
@@ -39,17 +72,19 @@ export function Terms() {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-8">
+        <motion.div 
+          ref={ref}
+          animate={controls}
+          initial="hidden"
+          variants={animation}
+          className="max-w-4xl mx-auto space-y-8"
+        >
           {/* Acceptance of Terms */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <div className="flex items-center">
-                  <CheckCircle className="h-6 w-6 text-blue-600 mr-3" />
+                  <CheckCircle className="h-6 w-6 text-[#e0a802] mr-3" />
                   <CardTitle>Acceptance of Terms</CardTitle>
                 </div>
               </CardHeader>
@@ -69,11 +104,7 @@ export function Terms() {
           </motion.div>
 
           {/* Services Description */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <CardTitle>Services Description</CardTitle>
@@ -96,15 +127,11 @@ export function Terms() {
           </motion.div>
 
           {/* Payment Terms */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <div className="flex items-center">
-                  <Scale className="h-6 w-6 text-blue-600 mr-3" />
+                  <Scale className="h-6 w-6 text-[#e0a802] mr-3" />
                   <CardTitle>Payment Terms</CardTitle>
                 </div>
               </CardHeader>
@@ -130,11 +157,7 @@ export function Terms() {
           </motion.div>
 
           {/* Intellectual Property */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <CardTitle>Intellectual Property Rights</CardTitle>
@@ -171,11 +194,7 @@ export function Terms() {
           </motion.div>
 
           {/* Confidentiality */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <CardTitle>Confidentiality and Non-Disclosure</CardTitle>
@@ -197,15 +216,11 @@ export function Terms() {
           </motion.div>
 
           {/* Limitation of Liability */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <div className="flex items-center">
-                  <AlertTriangle className="h-6 w-6 text-blue-600 mr-3" />
+                  <AlertTriangle className="h-6 w-6 text-[#e0a802] mr-3" />
                   <CardTitle>Limitation of Liability</CardTitle>
                 </div>
               </CardHeader>
@@ -217,57 +232,47 @@ export function Terms() {
                 <ul className="list-disc list-inside space-y-2 text-gray-600 ml-4">
                   <li>Indirect, incidental, or consequential damages</li>
                   <li>Loss of profits, data, or business opportunities</li>
-                  <li>Damages resulting from third-party actions or services</li>
+                  <li>Damages resulting from third-party actions or system failures</li>
                   <li>Issues arising from client-provided requirements or specifications</li>
                 </ul>
-                <p className="text-gray-600 mt-4">
-                  This limitation does not apply to damages caused by gross negligence 
-                  or intentional misconduct.
-                </p>
               </CardContent>
             </Card>
           </motion.div>
 
           {/* Termination */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
+          <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
                 <CardTitle>Termination</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">
-                  Either party may terminate this agreement with written notice. 
-                  Upon termination:
+                  Either party may terminate services with written notice. Upon termination:
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-gray-600 ml-4">
-                  <li>Client is responsible for payment of work completed to date</li>
-                  <li>We will deliver all completed work and materials</li>
+                  <li>Client is responsible for payment of work completed</li>
+                  <li>We will deliver all completed work and documentation</li>
                   <li>Confidentiality obligations remain in effect</li>
-                  <li>Intellectual property rights are transferred as specified</li>
+                  <li>Intellectual property rights are transferred as specified in the agreement</li>
                 </ul>
               </CardContent>
             </Card>
           </motion.div>
 
           {/* Contact Information */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-          >
-            <Card className="bg-blue-50 border-blue-200">
+          <motion.div variants={itemVariants}>
+            <Card className="bg-[#f1d9b5]">
               <CardHeader>
-                <CardTitle>Contact Information</CardTitle>
-                <CardDescription>
-                  For questions about these Terms of Service, please contact us:
-                </CardDescription>
+                <div className="flex items-center">
+                  <Phone className="h-6 w-6 text-black mr-3" />
+                  <CardTitle>Contact Information</CardTitle>
+                </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 text-gray-700">
+                <p className="text-black-600 mb-4">
+                  For questions about these terms or our services, please contact us:
+                </p>
+                <div className="space-y-2">
                   <p><strong>Email:</strong> legal@honortechllc.com</p>
                   <p><strong>Phone:</strong> +1 (555) 123-4567</p>
                   <p><strong>Address:</strong> Honor Tech LLC, United States</p>
@@ -275,7 +280,7 @@ export function Terms() {
               </CardContent>
             </Card>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )

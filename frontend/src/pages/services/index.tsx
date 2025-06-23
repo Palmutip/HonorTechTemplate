@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion'
+import { motion, useAnimation, useInView } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { setPageMeta } from '@/utils'
 import { honorTechServices } from "@/constants/data"
 
@@ -13,6 +13,28 @@ export function Services() {
       'Custom software development services including web applications, POS systems, and enterprise solutions. Streamline your business with our tailored software solutions.'
     )
   }, [])
+
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [controls, isInView]);
+
+  const animation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: i * 0.1
+      }
+    }),
+  }
 
   return (
     <div className="min-h-screen py-20">
@@ -32,13 +54,17 @@ export function Services() {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="space-y-20">
+        <motion.div 
+          ref={ref}
+          animate={controls}
+          initial="hidden"
+          variants={animation}
+          className="space-y-20"
+        >
           {honorTechServices.map((service, index) => (
             <motion.div 
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              variants={animation}
               className={`grid lg:grid-cols-2 gap-12 items-center ${
                 index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
               }`}
@@ -90,13 +116,11 @@ export function Services() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA Section */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={animation}
           className="mt-20"
         >
           <Card className="bg-[#e0a802] text-black border-[#e0a802]">
