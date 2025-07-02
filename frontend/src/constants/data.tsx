@@ -2,7 +2,7 @@ import React from "react";
 import { 
     Info, Star, Mail, CheckCircle, BriefcaseIcon, CogIcon, PlugIcon, BarChartIcon,
     Brain, Zap, Target, TrendingUp, PencilLine, Link, DollarSign, 
-    Shield, Award, Phone, MapPin
+    Shield, MapPin
 } from "lucide-react";
 import  pointOfSale from "/src/assets/img/pointOfSale1.webp"
 import  mobile from "/src/assets/img/mobile.webp"
