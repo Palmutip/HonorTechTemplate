@@ -1,14 +1,9 @@
 import { motion, useAnimation, useInView } from 'framer-motion'
-import { Send } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useEffect, useRef } from 'react'
 import { setPageMeta } from '@/utils'
-import { projectTypes, contactInfo, whyChooseUsContact } from '../../constants/data'
+import { contactInfo, whyChooseUsContact } from '../../constants/data'
+import { ContactForm } from '../../components/contact-form'
 
 export function Contact() {
   useEffect(() => {
@@ -66,79 +61,7 @@ export function Contact() {
         >
           {/* Contact Form */}
           <motion.div variants={animation}>
-            <Card>
-              <CardHeader>
-                <CardTitle>Send us a message</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input
-                        id="firstName"
-                        type="text"
-                        placeholder="John"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input
-                        id="lastName"
-                        type="text"
-                        placeholder="Doe"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="company">Company</Label>
-                    <Input
-                      id="company"
-                      type="text"
-                      placeholder="Your Company"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="projectType">Project Type</Label>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a project type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {projectTypes.map((type) => (
-                          <SelectItem key={type.value} value={type.value}>{type.label}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      rows={5}
-                      placeholder="Tell us about your project..."
-                    />
-                  </div>
-
-                  <Button type="submit" className="w-full text-black bg-[#e0a802] hover:bg-[#e0a802]/75">
-                    <Send className="h-5 w-5 mr-2" />
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+            <ContactForm />
           </motion.div>
 
           {/* Contact Information */}
@@ -156,7 +79,7 @@ export function Contact() {
 
             <div className="space-y-6">
               {contactInfo.map((info) => (
-                <div key={info.title} className="flex items-start">
+                <div key={info.title} className="flex items-center">
                   <div className="bg-[#e0a802] p-3 rounded-lg mr-4">
                     <info.icon className="h-6 w-6 text-black-600" />
                   </div>

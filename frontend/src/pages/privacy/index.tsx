@@ -45,7 +45,7 @@ export function Privacy() {
     }),
   }
 
-  const lastUpdated = "January 1, 2025"
+  const lastUpdated = "July 1, 2025"
 
   return (
     <div className="min-h-screen py-20">

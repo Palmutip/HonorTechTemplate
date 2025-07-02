@@ -1,6 +1,6 @@
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { Star, Quote } from 'lucide-react'
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { setPageMeta } from '../../utils'
 import { testimonials } from '../../constants/data'
 
@@ -44,10 +44,11 @@ export function Testimonials() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Client Testimonials</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">What Our Clients Say</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Hear from our clients about how Honor Tech has transformed their businesses 
-            with custom software solutions.
+          At Honor Tech, we take great pride in the success of our clients.
+          <br/>
+          Here&apos;s what some of them have to say about working with us
           </p>
         </motion.div>
 
@@ -57,7 +58,7 @@ export function Testimonials() {
           animate={controls}
           initial="hidden"
           variants={animation}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+          className="grid md:grid-cols-2 lg:grid-cols-1 gap-8 mb-16"
         >
           {testimonials.map((testimonial) => (
             <motion.div
@@ -75,7 +76,17 @@ export function Testimonials() {
                   </div>
                 </div>
               </div>
-              <p className="text-gray-600 mb-6 italic">"{testimonial.content}"</p>
+              <p className="text-gray-600 mb-6 italic">"{testimonial.content.split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && (
+                    <>
+                      <br />
+                      <br />
+                    </>
+                  )}
+                </React.Fragment>
+              ))}"</p>
               <div>
                 <div className="font-semibold text-gray-900">{testimonial.name}</div>
                 <div className="text-sm text-gray-500">{testimonial.role}</div>

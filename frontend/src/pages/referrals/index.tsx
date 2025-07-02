@@ -1,15 +1,15 @@
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { Gift } from 'lucide-react'
-import { Button } from '../../components/ui/button'
 import { useEffect, useRef } from 'react'
 import { setPageMeta } from '../../utils'
 import { howItWorksSteps, referralBenefits, commissionExamples } from '../../constants/data'
+import { ReferralForm } from '../../components/referral-form'
 
 export function Referrals() {
   useEffect(() => {
     setPageMeta(
       'Refer & Earn Program - Earn 12% Commission | Honor Tech LLC',
-      'Join our referral program and earn 12% commission on every project. Refer clients to Honor Tech LLC and start earning today.'
+      'Join our referral program and earn 12% commission of the signed contract value. Refer clients to Honor Tech LLC and start earning today.'
     )
   }, [])
 
@@ -52,7 +52,7 @@ export function Referrals() {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Refer & Earn Program</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Know someone who needs software? Earn 12% of the project value - whether that's 
+            Know someone who needs software? Earn 12% of the signed contract value - whether that&apos;s 
             <strong className="text-black-600"> $500 or $50,000</strong> per project. No cap. No fluff. Just results.
           </p>
         </motion.div>
@@ -151,19 +151,14 @@ export function Referrals() {
           </motion.div>
         </motion.div>
 
-        {/* CTA Section */}
-        <motion.div 
+        {/* Join the Program*/}
+        <motion.section 
           variants={animation}
-          className="bg-[#e0a802] text-black rounded-lg p-8 md:p-12 text-center"
+          className="py-5"
         >
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Earning?</h2>
-          <p className="text-xl mb-8 text-black-100">
-            Join our referral program and start earning commissions on every successful project.
-          </p>
-          <Button size="lg" variant="secondary" className="bg-gray-800 text-white hover:bg-gray-700 text-lg px-8 py-4 shadow-lg items-center gap-3">
-            Refer & Earn
-          </Button>
-        </motion.div>
+          <h2 className="text-3xl font-bold text-center mb-4">Join the Program</h2>
+          <ReferralForm />
+        </motion.section>
       </div>
     </div>
   )

@@ -53,8 +53,7 @@ export function Certifications() {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Certifications</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Professional certifications and industry standards that demonstrate our commitment 
-            to quality, security, and excellence in software development.
+            Honor Tech LLC is proud to be a verified and registered business with multiple state and federal entities. These credentials demonstrate our commitment to transparency, reliability, and excellence in service delivery.
           </p>
         </motion.div>
 
@@ -87,14 +86,37 @@ export function Certifications() {
                   <CardDescription className="text-base mb-4">
                     {cert.description}
                   </CardDescription>
-                  <p className="text-sm text-gray-500">
-                    Valid until: {new Date(cert.validUntil).toLocaleDateString()}
-                  </p>
+                  
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Meaning */}
+        <motion.section 
+          variants={animation}
+          id="web-applications" 
+          className="py-5"
+        >
+          <div className="mx-[40px]">
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+                What Does This Mean?
+              </h2>
+              <p className="text-lg text-gray-600 mb-3">
+                Being a verified and registered business ensures our partners and clients that we meet rigorous standards for credibility and compliance. Our credentials signify:
+              </p>
+              <div className="text-lg text-gray-600 mb-3">
+                <p>
+                  ✔️ Reliable financial health and transparency
+                </p><p>
+                  ✔️ Eligibility for federal, state, and corporate contracts
+                </p><p>
+                  ✔️ Recognition as a trusted business partner
+                </p>
+              </div>
+          </div>
+        </motion.section>
 
         {/* Quality Standards */}
         <motion.div 

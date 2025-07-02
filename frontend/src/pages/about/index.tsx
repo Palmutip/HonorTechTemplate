@@ -45,8 +45,7 @@ export function About() {
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Who We Are</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Honor Tech LLC is dedicated to helping businesses integrate modern technologies 
-            that streamline workflows and boost productivity.
+            Honor Tech LLC is dedicated to providing innovative software solutions that empower businesses to achieve their full potential.
           </p>
         </motion.div>
 
@@ -56,30 +55,36 @@ export function About() {
           animate={controls}
           initial="hidden"
           variants={animation}
-          className="grid lg:grid-cols-2 gap-12 mb-20"
+          className="grid lg:grid-cols-3 gap-12 mb-20"
         >
+          <motion.div variants={animation}>
+            <h2 className="text-3xl font-bold mb-6">Our History</h2>
+            <p className="text-lg text-gray-600 mb-6">
+              Founded as Seigel Software Development, we have a rich history of serving the legal industry with specialized court software. 
+            </p>
+            <p className="text-lg text-gray-600">
+              As we evolved into Honor Tech LLC, our focus expanded to include a broad range of services that cater to various sectors. 
+              This transition marks our commitment to innovation and adaptability in a rapidly changing technological landscape.
+            </p>
+          </motion.div>
+          
           <motion.div variants={animation}>
             <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
             <p className="text-lg text-gray-600 mb-6">
-              Our team of experts tailors solutions to match the unique demands of your industry, 
-              ensuring optimal results and a clear return on investment.
+            Our mission is to create powerful, user-friendly software that helps businesses streamline operations, enhance productivity, and gain a competitive edge. 
             </p>
             <p className="text-lg text-gray-600">
-              From small-scale custom applications to enterprise-level software architectures, 
-              we tackle challenges big or small.
+              We believe in building long-term partnerships with our clients, offering continuous support and development to keep them ahead in their respective fields.
             </p>
-          </motion.div>
+          </motion.div>         
 
           <motion.div variants={animation}>
-            <h2 className="text-3xl font-bold mb-6">What We Do</h2>
+            <h2 className="text-3xl font-bold mb-6">Our Team</h2>
             <p className="text-lg text-gray-600 mb-6">
-              Our specialties range from designing scalable cloud environments to implementing 
-              robust cybersecurity practices.
+              Our team comprises skilled developers, designers, and consultants who are passionate about technology and its ability to transform businesses. We work closely with our clients to understand their needs and deliver solutions that exceed expectations. 
             </p>
             <p className="text-lg text-gray-600">
-              We also offer ongoing support and maintenance to keep your systems running smoothly. 
-              With years of industry expertise, our goal is to provide transformative technology 
-              solutions that empower your business to reach new heights.
+              With a strong foundation in software development, our team leverages years of experience across various industries to deliver tailored solutions that meet the unique challenges of each client.
             </p>
           </motion.div>
         </motion.div>

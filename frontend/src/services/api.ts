@@ -45,6 +45,9 @@ export const endpoints = {
   // Contact
   contact: '/api/contact',
   
+  // Referrals
+  referrals: '/api/referrals',
+  
   // Services
   services: '/api/services',
   
@@ -60,6 +63,12 @@ export const apiService = {
   // Contact form submission
   submitContact: async (data: any) => {
     const response = await api.post(endpoints.contact, data);
+    return response.data;
+  },
+
+  // Referral form submission
+  submitReferral: async (data: any) => {
+    const response = await api.post(endpoints.referrals, data);
     return response.data;
   },
 

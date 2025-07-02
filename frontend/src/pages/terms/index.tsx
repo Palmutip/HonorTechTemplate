@@ -1,5 +1,5 @@
 import { motion, useAnimation, useInView } from 'framer-motion'
-import { FileText, Scale, AlertTriangle, CheckCircle, Phone } from 'lucide-react'
+import { FileText, Scale, AlertTriangle, CheckCircle, Phone, CalendarOff, DoorClosedLocked, BookMarked, LetterText } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useEffect, useRef } from 'react'
 import { setPageMeta } from '@/utils'
@@ -45,7 +45,7 @@ export function Terms() {
     }),
   }
 
-  const lastUpdated = "January 1, 2025"
+  const lastUpdated = "July 1, 2025"
 
   return (
     <div className="min-h-screen py-20">
@@ -107,7 +107,10 @@ export function Terms() {
           <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
-                <CardTitle>Services Description</CardTitle>
+                <div className="flex items-center">
+                  <LetterText className="h-6 w-6 text-[#e0a802] mr-3" />
+                  <CardTitle>Services Description</CardTitle>
+                </div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">
@@ -160,7 +163,10 @@ export function Terms() {
           <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
-                <CardTitle>Intellectual Property Rights</CardTitle>
+                <div className="flex items-center">
+                  <BookMarked className="h-6 w-6 text-[#e0a802] mr-3" />
+                  <CardTitle>Intellectual Property Rights</CardTitle>
+                </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
@@ -197,7 +203,10 @@ export function Terms() {
           <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
-                <CardTitle>Confidentiality and Non-Disclosure</CardTitle>
+                  <div className="flex items-center">
+                    <DoorClosedLocked className="h-6 w-6 text-[#e0a802] mr-3" />
+                    <CardTitle>Confidentiality and Non-Disclosure</CardTitle>
+                  </div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">
@@ -243,7 +252,10 @@ export function Terms() {
           <motion.div variants={itemVariants}>
             <Card>
               <CardHeader>
-                <CardTitle>Termination</CardTitle>
+                <div className="flex items-center">
+                  <CalendarOff className="h-6 w-6 text-[#e0a802] mr-3" />
+                  <CardTitle>Termination</CardTitle>
+                </div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">

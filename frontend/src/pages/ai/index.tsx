@@ -4,6 +4,7 @@ import { Button } from '../../components/ui/button'
 import { useEffect, useRef } from 'react'
 import { setPageMeta } from '../../utils'
 import { aiFeatures, aiSolutions } from '../../constants/data'
+import { Link } from "react-router-dom";
 
 export function AI() {
   useEffect(() => {
@@ -79,7 +80,7 @@ export function AI() {
         {/* AI Solutions */}
         <motion.div 
           variants={animation}
-          className="bg-gray-50 rounded-lg p-8 md:p-12 mb-20"
+          className="bg-gray-50 rounded-lg p-8 md:p-12"
         >
           <h2 className="text-3xl font-bold text-center mb-12">AI-Powered Solutions</h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -102,6 +103,56 @@ export function AI() {
           </div>
         </motion.div>
 
+        {/* AI in Your Next Application */}
+        <motion.section 
+          variants={animation}
+          id="web-applications" 
+          className="py-5"
+        >
+          <div className="mx-[40px]">
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+                AI in Your Next Application
+              </h2>
+              <p className="text-justify text-lg text-gray-600 mb-3">
+                At Honor Tech LLC, we understand that AI is transforming how businesses operate, and we&apos;re committed to helping you harness its power. Whether you&apos;re looking to enhance user experiences, streamline processes, or analyze large datasets, we can integrate AI capabilities tailored to your specific needs.              
+              </p>
+              <p className="text-justify text-lg text-gray-600 mb-3">
+                We utilize established AI frameworks, such as those provided by OpenAI, and work with tools in the .NET and JavaScript ecosystems to implement intelligent solutions. Our approach prioritizes flexibility, allowing us to choose the best-fit technologies for each project.
+              </p>
+              <p className="text-justify text-lg text-gray-600 mb-3">
+                For .NET-based applications, we leverage libraries like Microsoft.Extensions.AI to seamlessly integrate AI services into software. These tools enable us to design applications that adapt to your business challenges and scale efficiently.
+              </p>
+              <p className="text-justify text-lg text-gray-600 mb-3">
+                In web-based and cross-platform environments, we explore lightweight AI libraries and APIs that deliver real-time processing capabilities for tasks like predictive analytics, natural language understanding, and image recognition. By tailoring our approach, we ensure your applications benefit from the latest advancements in AI without unnecessary overhead.
+              </p>
+              <p className="text-justify text-lg text-gray-600 mb-3">
+                Our priority is delivering solutions that are not only powerful but also ethical and secure. For sensitive domains, such as judiciary or government datasets, we work with strict safeguards to ensure proprietary or protected data is never exposed in AI models. Where necessary, we implement containerized or externalized AI processes to maintain data integrity and compliance.
+              </p>
+          </div>
+        </motion.section>
+
+        {/* Honor Tech LLC Usage of AI */}
+        <motion.section 
+          variants={animation}
+          id="point-of-sale" 
+          className="py-5 bg-gray-50 mb-16"
+        >
+          <div className="mx-[40px]">
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+                Honor Tech LLC Usage of AI
+              </h2>
+              <p className="text-justify text-lg text-gray-600 mb-3">
+                At Honor Tech, AI serves as a tool to enhance our development processes—not replace them. We combine the speed and efficiency of AI-driven development with the expertise and oversight of our experienced engineers. This ensures every project benefits from cutting-edge innovation without compromising on quality or accuracy.
+              </p>
+              <p className="text-justify text-lg text-gray-600 mb-3">
+                We use AI to streamline repetitive tasks, assist with large-scale data analysis, and accelerate timelines. However, every line of code is reviewed and refined by our developers, ensuring that the final product reflects our commitment to excellence.
+              </p>
+              <p className="text-justify text-lg text-gray-600 mb-3">
+                Choosing Honor Tech LLC means working with a team that values transparency and adaptability. Whether your project requires AI-powered insights or traditional development methodologies, we deliver quality work tailored to your goals and challenges. Our expertise spans years of software development, ensuring we provide robust solutions no matter the tools involved.
+              </p>
+          </div>
+        </motion.section>
+
         {/* CTA Section */}
         <motion.div 
           variants={animation}
@@ -112,9 +163,11 @@ export function AI() {
             Discover how artificial intelligence can transform your business operations 
             and drive unprecedented growth.
           </p>
-          <Button size="lg" variant="secondary" className="bg-gray-800 text-white hover:bg-gray-700 text-lg px-8 py-4 shadow-lg items-center gap-3">
-            Explore AI Solutions
-          </Button>
+          <Link to="/contact">
+            <Button size="lg" variant="secondary" className="bg-gray-800 text-white hover:bg-gray-700 text-lg px-8 py-4 shadow-lg items-center gap-3">
+              Start Your Project
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </div>

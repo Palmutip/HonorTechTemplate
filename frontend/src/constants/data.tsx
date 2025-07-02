@@ -1,7 +1,7 @@
 import React from "react";
 import { 
-    Info, Star, Mail, CheckCircle, Code, Building2, ShoppingCart, 
-    Brain, Zap, Target, TrendingUp, Users, ArrowRight, DollarSign, 
+    Info, Star, Mail, CheckCircle, BriefcaseIcon, CogIcon, PlugIcon, BarChartIcon,
+    Brain, Zap, Target, TrendingUp, PencilLine, Link, DollarSign, 
     Shield, Award, Phone, MapPin
 } from "lucide-react";
 import  pointOfSale from "/src/assets/img/pointOfSale1.webp"
@@ -48,83 +48,86 @@ export const coverHomePage = [
 ]
 
 export const honorTechServices = [
-    {
-      icon: Code,
-      title: "Web Applications",
-      description: "Our custom web applications help businesses streamline operations, improve productivity, and automate workflows. Whether you need a client portal, internal dashboard, or a specialized workflow system, we build scalable solutions designed for long-term success.",
-      features: [
-        "Cloud-based platforms",
-        "Data-driven reporting tools",
-        "Workflow automation",
-        "Real-time collaboration",
-        "Mobile-responsive design"
-      ],
-      idealFor: "Businesses needing centralized data systems, real-time collaboration tools, or performance-driven applications."
-    },
-    {
-      icon: ShoppingCart,
-      title: "Point of Sale Systems",
-      description: "A custom-built Point of Sale (POS) system should be more than just payment processing—it should be the backbone of your entire business workflow. We design fully integrated business management applications that seamlessly incorporate Stripe or similar payment platforms.",
-      features: [
-        "Cloud-based POS management",
-        "Integrated payment processing",
-        "Real-time inventory tracking",
-        "Location-based scanning",
-        "Automated financial reporting"
-      ],
-      idealFor: "Businesses looking for a custom, all-in-one POS solution that works exactly how they need—without the limitations of traditional POS systems."
-    },
-    {
-      icon: Building2,
-      title: "Enterprise Solutions",
-      description: "Enterprise businesses require powerful, scalable software that can handle complex workflows, data security, and compliance regulations. We build solutions that integrate seamlessly across departments and automate mission-critical processes.",
-      features: [
-        "Enterprise Resource Planning (ERP)",
-        "AI-driven analytics",
-        "Automated workflow systems",
-        "Compliance management",
-        "Cross-department integration"
-      ],
-      idealFor: "Large organizations needing automation, process optimization, and AI-driven efficiency improvements."
-    }
+  {
+    icon: BriefcaseIcon,
+    title: "Business Automation",
+    description:
+      "Streamline your daily operations with tailored automation solutions. Eliminate repetitive tasks, reduce errors, and boost efficiency across departments with customized business workflows.",
+    features: [
+      "Internal process automation",
+      "Custom inventory control systems",
+      "Employee time and attendance tracking",
+      "Help desk ticketing platforms"
+    ],
+    idealFor:
+      "Businesses looking to reduce manual labor, cut operational costs, and increase team productivity through smart automation.",
+    phrase:
+      "Cut the busywork. Boost productivity with automation built for your business."
+  },
+  {
+    icon: BarChartIcon,
+    title: "Reporting Solutions for Your Existing Database",
+    description:
+      "Get the insights you need from the data you already have. We build powerful, customized reports that connect directly to your database and present real-time, decision-driving information.",
+    features: [
+      "Microsoft Report Builder (SSRS integration)",
+      ".NET-based local reporting apps",
+      "Custom web dashboards and live data views"
+    ],
+    idealFor:
+      "Organizations with their own databases that need clear, actionable reports without relying on restrictive or complex third-party tools.",
+    phrase:
+      "Turn your data into decisions. Real-time, customizable reporting at your fingertips."
+  },
+  {
+    icon: PlugIcon,
+    title: "Hardware and Software Integrations",
+    description:
+      "Connect the tools you already use. We integrate your existing hardware and third-party platforms into cohesive systems that share data and streamline operations.",
+    features: [
+      "Biometric time clocks",
+      "Zebra barcode scanners",
+      "Signature pads",
+      "Nest cameras and thermostats",
+      "Epson projectors",
+      "Integrations with Salesforce, QuickBooks, Stripe, Slack, and more"
+    ],
+    idealFor:
+      "Companies looking to unify disconnected systems, automate cross-platform workflows, and get more value from their existing tech stack.",
+    phrase:
+      "Bridge the gap between hardware and software — seamless integrations that work for you."
+  },
+  {
+    icon: CogIcon,
+    title: "Custom Software & System Enhancements",
+    description:
+      "When off-the-shelf solutions fall short, we build exactly what your business needs. From data migrations to advanced workflows, our custom systems are built to scale and designed around your goals.",
+    features: [
+      "Data migration between platforms",
+      "Email and SMS alert systems",
+      "Online payment and shopping cart integration",
+      "Custom document workflows",
+      "Tailored content management systems (CMS)"
+    ],
+    idealFor:
+      "Organizations with unique challenges or specialized processes that demand flexible, purpose-built software.",
+    phrase:
+      "No templates. No shortcuts. Just the perfect solution — built for your business."
+  }
 ]
 
 // For Testimonials page: list of testimonials.
 export const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "CEO, TechStart Inc.",
-    content: "Honor Tech transformed our business operations with their custom software solution. The team was professional, responsive, and delivered exactly what we needed. Our efficiency has increased by 40% since implementation.",
+    name: "Phillip Gallegos",
+    role: "Court Operations Manager, Bernalillo County - Metropolitan Court",
+    content: "Software Development played a crucial role in helping us achieve our technical business objectives. They were both professional and affordable and promptly responded to our specific requirements. Their services included automating several court processes, integrating with Tyler Tech's Odyssey case manager, fixing bugs in our current software, and performing a number of data extractions. I strongly recommend Honor Tech LLC to other companies and agencies seeking to build customized programs or supplement their software development teams.",
     rating: 5
   },
   {
-    name: "Michael Chen",
-    role: "Operations Manager, Retail Solutions",
-    content: "The POS system they built for us is incredible. It's intuitive, reliable, and has streamlined our entire sales process. The integration with our payment processors was seamless.",
-    rating: 5
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Director of IT, Enterprise Corp",
-    content: "Working with Honor Tech was a game-changer for our enterprise. Their AI-driven analytics platform has given us insights we never had before. The ROI was immediate and substantial.",
-    rating: 5
-  },
-  {
-    name: "David Thompson",
-    role: "Founder, StartupXYZ",
-    content: "As a startup, we needed a partner who could scale with us. Honor Tech delivered a solution that grows with our business. Their ongoing support has been invaluable.",
-    rating: 5
-  },
-  {
-    name: "Lisa Wang",
-    role: "CTO, Manufacturing Co.",
-    content: "The workflow automation system they implemented has eliminated bottlenecks we didn't even know we had. Our production efficiency has improved dramatically.",
-    rating: 5
-  },
-  {
-    name: "Robert Davis",
-    role: "VP of Operations, Service Industry",
-    content: "Honor Tech's custom web application has revolutionized how we serve our clients. The real-time collaboration features have made remote work seamless for our team.",
+    name: "Johnnie Gordon",
+    role: "Ankobia Group LLC",
+    content: `At Ankobia Group LLC, we pride ourselves on working with exceptional partners, and Honor Tech LLC has proven to be one of the best. As our software development subcontractor for Bexar County's judiciary, Honor Tech delivered innovative solutions that significantly enhanced the County’s operations.\nTheir work on the electronic subpoena request and reset process was a standout achievement. Honor Tech developed a system that not only automated the generation of documents but also seamlessly integrated with other platforms, ensuring a more efficient and reliable workflow.\nAdditionally, Honor Tech played a critical role in building pretrial data entry systems and data visualization tools, which enabled the County to gain better insights into case information. Separately, their advanced notification systems ensured timely communication with all parties, significantly improving both responsiveness and accountability.\nHonor Tech's technical expertise, combined with their ability to collaborate effectively with all stakeholders, has made a meaningful impact on Bexar County’s judiciary. We are proud to have partnered with them and highly recommend their services for any organization looking to improve efficiency through tailored software solutions.`,
     rating: 5
   }
 ]
@@ -178,26 +181,26 @@ export const aiSolutions = [
 // For Referrals page: steps on how the referral program works.
 export const howItWorksSteps = [
   {
-    icon: Users,
-    title: "1. Refer a Client",
-    description: "Connect us with someone who needs custom software solutions"
+    icon: PencilLine,
+    title: "1. Sign Up",
+    description: "Fill out the quick form below"
   },
   {
-    icon: ArrowRight,
-    title: "2. We Deliver",
-    description: "Our team builds and delivers the custom solution"
+    icon: Link,
+    title: "2. Share Your Link",
+    description: "You'll get a unique referral link to send out."
   },
   {
     icon: DollarSign,
     title: "3. You Earn",
-    description: "Receive 12% of the project value as your commission"
+    description: "Get paid when your referral signs and pays."
   }
 ];
 
 // For Referrals page: benefits of the referral program.
 export const referralBenefits = {
   forYou: [
-    { highlight: "12% commission", rest: " on every project" },
+    { highlight: "12% commission", rest: " of the signed contract value" },
     { highlight: "No cap", rest: " on earnings potential" },
     { highlight: "No upfront costs", rest: " or investment required" },
     { highlight: "Ongoing commissions", rest: " for maintenance contracts" }
@@ -214,19 +217,19 @@ export const referralBenefits = {
 export const commissionExamples = [
   {
     level: "Small Project",
-    value: "$5,000",
-    commission: "$600",
+    value: "~$10,000",
+    commission: "$500",
     featured: false
   },
   {
     level: "Medium Project",
-    value: "$25,000",
-    commission: "$3,000",
+    value: "$20,000+",
+    commission: "$1,000+",
     featured: true
   },
   {
     level: "Large Project",
-    value: "$100,000",
+    value: "$100,000+",
     commission: "$12,000",
     featured: false
   }
@@ -235,32 +238,52 @@ export const commissionExamples = [
 // For Certifications page: list of company certifications.
 export const certifications = [
   {
-    title: "ISO 27001 Information Security",
-    description: "Certified for information security management systems, ensuring your data is protected with enterprise-grade security measures.",
+    title: "D-U-N-S® Number",
+    description: "Unique nine-digit identifier assigned to businesses by Dun & Bradstreet (D&B). 119401893",
     icon: Shield,
-    status: "Active",
-    validUntil: "2025-12-31"
+    status: "Verified"
   },
   {
-    title: "Microsoft Partner",
-    description: "Official Microsoft Partner with expertise in Azure cloud solutions and Microsoft technologies.",
-    icon: Star,
-    status: "Active",
-    validUntil: "2025-12-31"
+    title: "SAM.gov Registration & CAGE Code",
+    description: "Unique identifier assigned to businesses and organizations doing business with the U.S. federal government.",
+    icon: Shield,
+    status: "Active"
   },
   {
-    title: "AWS Certified Solutions Architect",
-    description: "Certified in designing and deploying scalable, reliable, and secure applications on AWS.",
-    icon: Award,
-    status: "Active",
-    validUntil: "2025-12-31"
+    title: "SBA Small Business Certification",
+    description: "Official recognition from the U.S. Small Business Administration that allows qualifying businesses to compete for federal contracts specifically set aside for small businesses.",
+    icon: Shield,
+    status: "Active"
   },
   {
-    title: "Google Cloud Professional",
-    description: "Certified in Google Cloud Platform technologies and best practices for cloud-native development.",
-    icon: CheckCircle,
-    status: "Active",
-    validUntil: "2025-12-31"
+    title: "Veteran-Owned Small Business Certification",
+    description: "Designation that recognizes businesses majority-owned and controlled by one or more veterans.",
+    icon: Shield,
+    status: "Pending"
+  },
+  {
+    title: "Colorado Trade Name",
+    description: "In Colorado, a trade name, often called a DBA (Doing Business As), is a name that a business or individual uses to operate, which is different from their legal name. Honor Tech LLC.",
+    icon: Shield,
+    status: "Registered"
+  },
+  {
+    title: "Colorado Vendor Self Service (VSS)",
+    description: "Online platform provided by the State of Colorado where vendors can manage their accounts, view and respond to solicitations, and access other relevant information related to doing business with the state.",
+    icon: Shield,
+    status: "Registered"
+  },
+  {
+    title: "New Hampshire Vendor Registration",
+    description: "Registering as a vendor is crucial for businesses looking to sell goods or services to the State of New Hampshire. It allows them to be considered for contracts and ensures they can be paid for their work.",
+    icon: Shield,
+    status: "Registered"
+  },
+  {
+    title: "New Mexico Vendor Registration",
+    description: "Vendor with the state of New Mexico in SHARE. Registering ensures compliance with New Mexico tax laws and allows you to legally operate within the state.",
+    icon: Shield,
+    status: "Registered"
   }
 ]
 
@@ -277,12 +300,12 @@ export const qualityStandards = [
 ]
 
 // For Contact page: types of projects for the contact form select input.
-export const projectTypes = [
-  { value: "web-app", label: "Web Application" },
-  { value: "pos", label: "Point of Sale System" },
-  { value: "enterprise", label: "Enterprise Solution" },
-  { value: "ai-ml", label: "AI/ML Integration" },
-  { value: "other", label: "Other" }
+export const referralSources = [
+  { value: "Google", label: "Google" },
+  { value: "LinkedIn", label: "LinkedIn" },
+  { value: "Alignable", label: "Alignable" },
+  { value: "WordOfMouth", label: "Word of Mouth" },
+  { value: "Other", label: "Other" }
 ];
 
 // For Contact page: contact information details.
@@ -290,19 +313,13 @@ export const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    details: "info@honortechllc.com",
-    note: "We typically respond within 24 hours"
-  },
-  {
-    icon: Phone,
-    title: "Phone",
-    details: "+1 (555) 123-4567",
-    note: "Monday - Friday, 9 AM - 6 PM EST"
+    details: "mimi@honortechllc.com",
+    note: "We typically respond within 72 hours"
   },
   {
     icon: MapPin,
     title: "Location",
-    details: "United States",
+    details: "Pueblo, CO, United States, Colorado",
     note: "Serving clients nationwide"
   }
 ];
@@ -324,8 +341,44 @@ export const imageCredits = [
       license: "Unsplash License",
       items: [
         {
-          creator: "Annie Spratt",
-          creatorUrl: "https://unsplash.com/@anniespratt"
+          creator: "Balázs Kétyi",
+          creatorUrl: "https://unsplash.com/@balazsketyi"
+        },
+        {
+          creator: "Simon Kadula",
+          creatorUrl: "https://unsplash.com/@simonkadula"
+        },
+        {
+          creator: "Donovan Reeves",
+          creatorUrl: "https://unsplash.com/@donovanreeves"
+        },
+        {
+          creator: "Blake Wisz",
+          creatorUrl: "https://unsplash.com/@blakewisz"
+        },
+        {
+          creator: "Lukas Blazek",
+          creatorUrl: "https://unsplash.com/@goumbik"
+        },
+        {
+          creator: "Tingey Injury Law Firm",
+          creatorUrl: "https://unsplash.com/@tingeyinjurylawfirm"
+        },
+        {
+          creator: "James Harrison",
+          creatorUrl: "https://unsplash.com/@jstrippa"
+        },
+        {
+          creator: "MaximalFocus",
+          creatorUrl: "https://unsplash.com/@maximalfocus"
+        },
+        {
+          creator: "Igor Omilaev",
+          creatorUrl: "https://unsplash.com/@omilaev"
+        },
+        {
+          creator: "Zhenyu Luo",
+          creatorUrl: "https://unsplash.com/@mrnuclear"
         }
       ]
     },
@@ -336,6 +389,21 @@ export const imageCredits = [
       license: "ISC License",
       items: []
     }
+]
+
+export const photographers = [
+  {
+    name: "Unsplash Contributors",
+    description: "Professional photographers who share their work freely",
+    specialties: ["Business", "Technology", "Office", "Lifestyle"],
+    url: "https://unsplash.com/"
+  },
+  {
+    name: "iStockPhoto Contributors",
+    description: "Stock media provider offering a vast library of royalty-free photos",
+    specialties: ["Corporate", "Modern", "Clean", "Professional"],
+    url: "https://istockphoto.com/"
+  }
 ]
 
 export const footerNavItems: FooterNavItem[] = [

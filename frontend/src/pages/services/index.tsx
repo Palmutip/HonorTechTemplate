@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { useEffect, useRef } from 'react'
 import { setPageMeta } from '@/utils'
 import { honorTechServices } from "@/constants/data"
+import { Link } from "react-router-dom";
 
 export function Services() {
   useEffect(() => {
@@ -93,10 +94,6 @@ export function Services() {
                   <h3 className="text-xl font-semibold mb-2">Ideal for:</h3>
                   <p className="text-gray-600">{service.idealFor}</p>
                 </div>
-
-                <Button className="bg-[#e0a802] text-black">
-                  Learn More
-                </Button>
               </div>
 
               <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
@@ -108,7 +105,7 @@ export function Services() {
                       </div>
                       <CardTitle className="text-2xl mb-4">{service.title}</CardTitle>
                       <CardDescription className="text-base">
-                        Custom solutions tailored to your specific business needs
+                        {service.phrase}
                       </CardDescription>
                     </div>
                   </CardContent>
@@ -129,9 +126,11 @@ export function Services() {
               <CardDescription className="text-xl mb-8 text-black">
                 Let's discuss how our custom software solutions can transform your business.
               </CardDescription>
-              <Button size="lg" variant="secondary" className="bg-gray-800 text-white hover:bg-gray-700 text-lg px-8 py-4 shadow-lg items-center gap-3">
-                Start Your Project
-              </Button>
+              <Link to="/contact">
+                <Button size="lg" variant="secondary" className="bg-gray-800 text-white hover:bg-gray-700 text-lg px-8 py-4 shadow-lg items-center gap-3">
+                  Start Your Project
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </motion.div>

@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { useEffect, useRef } from 'react'
 import { setPageMeta } from '@/utils'
-import { imageCredits } from '../../constants/data'
+import { imageCredits, photographers } from '../../constants/data'
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -58,21 +58,6 @@ export function ImageCredits() {
     }),
   }
 
-  const photographers = [
-    {
-      name: "Unsplash Contributors",
-      description: "Professional photographers who share their work freely",
-      specialties: ["Business", "Technology", "Office", "Lifestyle"],
-      url: "https://unsplash.com/"
-    },
-    {
-      name: "Pexels Community",
-      description: "Talented photographers and videographers",
-      specialties: ["Corporate", "Modern", "Clean", "Professional"],
-      url: "https://www.pexels.com/"
-    }
-  ]
-
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
@@ -122,10 +107,11 @@ export function ImageCredits() {
                 </CardHeader>
                 <CardContent>
                   {creditType.items.length > 0 ? (
-                    <ul className="space-y-2">
+                    <div className="">
+                    <ul className="flex flex-wrap gap-x-4 gap-y-2">
                       {creditType.items.map((item) => (
                         <li key={item.creator} className="flex items-center">
-                          <ExternalLink className="h-4 w-4 mr-2" />
+                          <ExternalLink className="h-4 w-4 mr-1" />
                           <a 
                             href={item.creatorUrl} 
                             target="_blank" 
@@ -137,6 +123,7 @@ export function ImageCredits() {
                         </li>
                       ))}
                     </ul>
+                    </div>
                   ) : (
                     <p className="text-gray-600">
                       The icons used throughout the site are from the Lucide icon library, which is 
